@@ -1,0 +1,124 @@
+Proceso Evaluación1
+    Definir op, opc Como Entero;
+	Definir a1, n, n1, d, d1, Sn, an, a, b, int, Q, W, E, x1, x2, Vx, Vy, Xv, Yv, eje, disc Como Real;
+    op = 0;
+	
+    Mientras op <> 4 Hacer
+        Escribir "===== MENÚ PRINCIPAL =====";
+        Escribir "1. Progresión aritmética";
+        Escribir "2. Integral definida [f(x)=1/(x-2)]";
+        Escribir "3. Ecuación cuadrática: puntos especiales";
+        Escribir "4. Cerrar programa";
+        Escribir "Elige una opción: ";
+        Leer op;
+        
+        Segun op Hacer
+            Caso 1:
+				Repetir
+					Escribir "Has elegido la opción 1: Progresión aritmética.";
+					Escribir "Ingrese el primer número de la progresión";
+					Leer a1;
+					Escribir "Ingrese la diferencia común (d)";
+					Leer d;
+					d1=redon(d);
+					si d<>d1 //  Verifica que d sea entero
+						Repetir
+							Escribir "Ingrese una diferencia común (d) válida (d debe ser un número entero)";
+							Leer d;
+							d1=redon(d);
+						Hasta Que d=d1
+					FinSi
+					Escribir "La expesión algebraica de aquella progresión aritmética es: an=(" a1 ")+(n+1)*(" d "), siendo ´´an´´ el n-ésimo número de la progresión aritmética";
+					Escribir "Ingrese n (n debe ser mayor a 3)";
+					Leer n;
+					n1=redon(n);
+					Mientras n<=3 o n1<>n // Verifica que n sea un número natural mayor que 3
+						Escribir "n inválido, ingrese un n número natural mayor que 3.";
+						Leer n;
+						n1=redon(n);
+					FinMientras
+					an=a1+(n+1)*d;
+					Escribir "El " n "-éismo número de la progresión es: " an;
+					Sn=(n/2)*(a1+an);
+					Escribir "La sumatoria de la progresión hasta el " n "-éismo número es: " Sn;
+					Escribir "¿Desea continuar usando esta opción (1. Progresión aritmética)? Elija una opción:";
+					Escribir "1. Sí, deseo continuar.";
+					Escribir "2. No, deseo salir de esta opción.";
+					Leer opc;
+					si opc>2
+						Repetir
+							Escribir "Opción no válida, elija una opción entre 1 y 2";
+							Leer opc;
+						Hasta Que opc=1 o opc=2
+					FinSi
+				Hasta Que opc=2
+				
+            Caso 2:
+                Escribir "Has elegido la opción 2: Integral definida.";
+                Escribir "Ingrese el límite de integración inferior";
+				Leer a;
+				Escribir "Ingrese el límite de integración superior";
+				Leer b;
+				Si a = 2 o b = 2 Entonces // Verifica si alguno de los límites es igual a 2, donde la función diverge
+					Escribir "La integral diverge ya que uno de sus límites es 2, y f(x)=1/(x-2) tiene asíntota vertical en x=2.";
+				Sino
+					Si (a < 2 y b > 2) o (a > 2 y b < 2) Entonces // Verificar si el intervalo incluye x = 2 (es decir, si a < 2 < b o b < 2 < a)
+						Escribir "La integral diverge porque el intervalo incluye x = 2, donde la función f(x)=1/(x-2) no está definida.";
+					Sino
+						int=ln(abs((b-2)))-ln(abs((a-2)));
+						Escribir "La integral de 1/(x-2) desde ", a, " hasta ", b, " es: ", int;
+					FinSi
+				FinSi
+				
+				
+            Caso 3:
+                Escribir "Has elegido la opción 3: Ecuación cuadrática: puntos especiales";
+				Escribir "A continuación ingrese los coeficientes de la ecuación cuadrática, de la forma Ax^2+Bx+C";
+				Escribir "Ingrese el valor de A: ";
+				Leer Q;
+				Si Q=0 Entonces
+					Repetir
+						Escribir "Error: A no puede ser 0, ingrese nuevamente el valor de A";
+						Leer Q;
+					Hasta Que Q<>0
+				FinSi
+				Escribir "Ingrese el valor de B: ";
+				Leer W;
+				Escribir "Ingrese el valor de C: ";
+				Leer E;
+				eje=-W/(2*Q); // Eje de simetría
+				Xv=eje; 
+				Yv=(4*Q*E-W^2)/(4*Q);
+				Vy=E; // Intersecciones con el eje Y
+				// Calcular las intersecciones con el eje X (raíces de la ecuación cuadrática)
+				disc=W^2-4*Q*E; //Discriminante
+				Si disc >= 0 Entonces
+					x1=(-W+Raiz(disc))/(2*Q);
+					x2=(-W-Raiz(disc))/(2*Q);
+				Sino
+					Escribir "La ecuación no tiene raíces reales.";
+				FinSi
+				Escribir "Eje de simetría: ", eje;
+				Escribir "Vértice: (", Xv, ", ", Yv, ")";
+				Escribir "Intersección con el eje Y: (0, ", Vy, ")";
+				Si disc >= 0 Entonces
+					si x1=x2 Entonces
+						Escribir "Intersección con el eje X (raíz de la ecuación): (", X1, ", 0)";
+					SiNo
+						Escribir "Intersección con el eje X (raices de la ecuación): (", X1, ", 0) y (", X2, ", 0)";
+					FinSi
+				FinSi
+				
+				
+            Caso 4:
+                Escribir "Saliendo del programa...";
+            De Otro Modo:
+                Escribir "Opción no válida, por favor elige una opción entre 1 y 4.";
+        FinSegun
+    FinMientras
+	
+    Escribir "Programa terminado.";
+FinProceso
+
+
+// <> es "distinto"
